@@ -4,6 +4,7 @@ import ru.netology.domaine.Proposition;
 import ru.netology.repository.Repository;
 
 import java.awt.print.Book;
+import java.util.Arrays;
 
 public class Manager {
     private Repository repo = new Repository();
@@ -19,26 +20,25 @@ public class Manager {
         repo.save(product);
     }
 
-    public boolean matches(Proposition product, String search) {
+    public boolean matches(Proposition product, String searchFrom, String searchTo) {
         if (product instanceof Proposition) { // если в параметре product лежит объект класса Book
             Proposition proposition = (Proposition) product; // положем его в переменную типа Book чтобы пользоваться методами класса Book
-            if (proposition.getFrom().contains(search)) { // проверим есть ли поисковое слово в данных об авторе
-                return true;
-            }
-            if (proposition.getTo().contains(search)) {
+            if (proposition.getFrom().contains(searchFrom) && proposition.getTo().contains(searchTo)) { // проверим есть ли поисковое слово в данных об авторе
                 return true;
             }
         }
         return false;
     }
 
-    public Proposition[] searchBy(String text) {
+    public Proposition[] searchBy(String from, String to) {
         Proposition[] searchResult = new Proposition[0];
         for (Proposition product : repo.findAll()) {
-            if (matches(product, text)) {
+            if (matches(product, from, to)) {
                 Proposition[] tmp = new Proposition[searchResult.length + 1];
+                System.arraycopy(searchResult, 0, tmp, 0, searchResult.length);
                 tmp[tmp.length - 1] = product;
                 searchResult = tmp;
+                Arrays.sort(searchResult);
             }
         }
         return searchResult;
