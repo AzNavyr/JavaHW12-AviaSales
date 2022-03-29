@@ -27,7 +27,7 @@ public class Repository {
         return null;
     }
 
-    public void removeById(int id) {
+    public Proposition[] removeById(int id) {
         int length = items.length - 1;
         Proposition[] tmp = new Proposition[length];
         int index = 0;
@@ -38,5 +38,6 @@ public class Repository {
             }
         }
         items = tmp;
+        return tmp;
     }
 }
