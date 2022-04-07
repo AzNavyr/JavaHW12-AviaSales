@@ -21,9 +21,9 @@ public class Manager {
     }
 
     public boolean matches(Proposition product, String searchFrom, String searchTo) {
-        if (product instanceof Proposition) { // если в параметре product лежит объект класса Book
-            Proposition proposition = (Proposition) product; // положем его в переменную типа Book чтобы пользоваться методами класса Book
-            if (proposition.getFrom().contains(searchFrom) && proposition.getTo().contains(searchTo)) { // проверим есть ли поисковое слово в данных об авторе
+        if (product instanceof Proposition) { 
+            Proposition proposition = (Proposition) product; 
+            if (proposition.getFrom().contains(searchFrom) && proposition.getTo().contains(searchTo)) { 
                 return true;
             }
         }
