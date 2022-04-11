@@ -21,7 +21,7 @@ public class Manager {
     }
 
     public boolean matches(Proposition product, String searchFrom, String searchTo) {
-        if (product instanceof Proposition) { //Не совсем понимаю зачем тут Book, это задача с билетами по теме Generics
+        if (product instanceof Proposition) { //Не совсем понимаю зачем тут Book или Smartphone, или T-Shirts, это задача с билетами по теме Generics
             Proposition proposition = (Proposition) product; 
             if (proposition.getFrom().contains(searchFrom) && proposition.getTo().contains(searchTo)) { 
                 return true;
